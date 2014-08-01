@@ -11,6 +11,7 @@ Simply copy the SplashView.java file into your project and use it like you would
 
 ## Usage
 
+You can create in code:
 ```
 // create and customize the view
 SplashView splashView = new SplashView(context);
@@ -22,7 +23,24 @@ splashView.setRemoveFromParentOnEnd(true); // remove the SplashView from MainVie
 
 // add the view to a parent view
 parentView.addView(splashView);
+```
 
+or in XML:
+```
+<com.yildizkabaran.twittersplash.view.SplashView 
+    xmlns:app="http://schemas.android.com/apk/res/com.yildizkabaran.twittersplash"
+	android:id="@+id/splash_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:icon="@drawable/ic_twitter"
+    app:iconColor="@color/twitter_blue"
+    app:duration="500"
+    app:backgroundColor="@color/white"
+    app:removeFromParentOnEnd="true" />
+```
+
+then to run the animation, simply call:
+```
 // run the animation and listen to the animation events (listener can be left as null)
 mSplashView.splashAndDisappear(new ISplashListener(){
 	@Override
@@ -44,10 +62,9 @@ mSplashView.splashAndDisappear(new ISplashListener(){
 
 ## Notes
 
-- The view has not yet been tested through XML and none of the features can be set through XML. This will be implemented later</li>
-- The view has only been tested on HTC One running Android 4.4.2, and therefore needs to be tested on devices with different versions and screen resolutions.</li>
-- Right now the size of the icon on the screen cannot be customized, and the intrinsic dimensions of the drawable is used. This will be fixed in future releases</li>
-- Twitter logo or the images used in this demo app do not belong to me and should not be used in your apps either.</li>
+- The view has only been tested on HTC One running Android 4.4.2, and therefore needs to be tested on devices with different versions and screen resolutions.
+- Right now the size of the icon on the screen cannot be customized, and the intrinsic dimensions of the drawable is used. This will be fixed in future releases
+- Twitter logo or the images used in this demo app do not belong to me and should not be used in your apps either.
 
 ## Thanks
 
