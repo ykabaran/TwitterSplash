@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main_view"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+    <com.yildizkabaran.twittersplash.view.SplashView 
+        xmlns:app="http://schemas.android.com/apk/res/com.yildizkabaran.twittersplash"
+    	android:id="@+id/splash_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:icon="@drawable/ic_twitter"
+        app:iconColor="@color/twitter_blue"
+        app:duration="500"
+        app:backgroundColor="@color/white"
+        app:removeFromParentOnEnd="true" />
+
+</FrameLayout>

@@ -6,11 +6,11 @@ import android.animation.ValueAnimator;
 import android.animation.ValueAnimator.AnimatorUpdateListener;
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
-import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -20,6 +20,7 @@ import android.view.ViewParent;
 import android.view.animation.OvershootInterpolator;
 
 import com.yildizkabaran.twittersplash.BuildConfig;
+import com.yildizkabaran.twittersplash.R;
 
 /**
  * A simple view class that will display an enlarging icon animation. For best results the provided icon should have a
@@ -57,7 +58,9 @@ public class SplashView extends View {
    * @param attrs
    */
   public SplashView(Context context, AttributeSet attrs) {
-    this(context);
+    super(context, attrs);
+    setupAttributes(attrs);
+    initialize();
   }
 
   /**
@@ -66,12 +69,14 @@ public class SplashView extends View {
    * @param attrs
    */
   public SplashView(Context context, AttributeSet attrs, int defStyleAttr) {
-    this(context);
+    super(context, attrs, defStyleAttr);
+    setupAttributes(attrs);
+    initialize();
   }
 
   public static final int DEFAULT_BG_COLOR = Color.WHITE;
   public static final int DEFAULT_ICON_COLOR = Color.rgb(23, 169, 229);
-  public static final long DEFAULT_DURATION = 500;
+  public static final int DEFAULT_DURATION = 500;
   public static final boolean DEFAULT_REMOVE_FROM_PARENT_ON_END = true;
   
   private static final int PAINT_STROKE_WIDTH = 2; // give a stroke width to the paint so that the rectangles get a little overlap
@@ -91,13 +96,39 @@ public class SplashView extends View {
   // cache the paint object so that it doesn't need to be allocated in onDraw
   private Paint mPaint = new Paint();
   
+  private void setupAttributes(AttributeSet attrs) {
+    Context context = getContext();
+
+    TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.TwitterSplashView);
+
+    int numAttrs = a.getIndexCount();
+    for (int i = 0; i < numAttrs; ++i) {
+      int attr = a.getIndex(i);
+      switch (attr) {
+      case R.styleable.TwitterSplashView_icon:
+        setIconDrawable(a.getDrawable(i));
+        break;
+      case R.styleable.TwitterSplashView_iconColor:
+        setIconColor(a.getColor(i, DEFAULT_ICON_COLOR));
+        break;
+      case R.styleable.TwitterSplashView_backgroundColor:
+        setBackgroundColor(a.getColor(i, DEFAULT_BG_COLOR));
+        break;
+      case R.styleable.TwitterSplashView_duration:
+        setDuration(a.getInt(i, DEFAULT_DURATION));
+        break;
+      case R.styleable.TwitterSplashView_removeFromParentOnEnd:
+        setRemoveFromParentOnEnd(a.getBoolean(i, DEFAULT_REMOVE_FROM_PARENT_ON_END));
+        break;
+      }
+    }
+    a.recycle();
+  }
+  
   /**
    * Initialized the view properties. No much is done in this method since most variables already have set defaults
    */
   private void initialize(){
-    // make the entire view transparent so that the transparent hole can show
-    setBackgroundColor(Color.TRANSPARENT);
-
     // set fill style on the paint so that the rectangles get filled
     mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
     mPaint.setStrokeWidth(PAINT_STROKE_WIDTH);
@@ -106,6 +137,7 @@ public class SplashView extends View {
   /**
    * Set the background color of the view that will be seen through the transparent hole of the icon before the animation starts
    */
+  @Override
   public void setBackgroundColor(int bgColor){
     mBgColor = bgColor;
   }
@@ -152,21 +184,22 @@ public class SplashView extends View {
    * @param icon
    */
   public void setIconDrawable(Drawable icon){
-    if(icon == null){
-      throw new IllegalArgumentException("icon cannot be null");
-    }
-    
     mIcon = icon;
-    mIconWidth = mIcon.getIntrinsicWidth();
-    mIconHeight = mIcon.getIntrinsicHeight();
-    // set the bounds of the drawable to its own dimensions
-    // canvas scaling will be used to change the bounds of the icon
-    Rect iconBounds = new Rect();
-    iconBounds.left = 0;
-    iconBounds.top = 0;
-    iconBounds.right = mIconWidth;
-    iconBounds.bottom = mIconHeight;
-    mIcon.setBounds(iconBounds);
+    if(mIcon != null){
+      mIconWidth = mIcon.getIntrinsicWidth();
+      mIconHeight = mIcon.getIntrinsicHeight();
+      // set the bounds of the drawable to its own dimensions
+      // canvas scaling will be used to change the bounds of the icon
+      Rect iconBounds = new Rect();
+      iconBounds.left = 0;
+      iconBounds.top = 0;
+      iconBounds.right = mIconWidth;
+      iconBounds.bottom = mIconHeight;
+      mIcon.setBounds(iconBounds);
+    } else {
+      mIconWidth = 0;
+      mIconHeight = 0;
+    }
     
     setMaxScale();
   }
@@ -303,6 +336,7 @@ public class SplashView extends View {
     
     // if the scale is less than 2, then don't enable the transparent hole yet
     if(mCurrentScale < 2){
+      Log.d(TAG, "drawing bg with color " + mBgColor + " where white is " + Color.WHITE);
       // draw a bgColored rectangle right underneath the icon, make the rectangle a little bigger using the threshold value
       mPaint.setColor(mBgColor);
       canvas.drawRect(mIconLeft, mIconTop, mIconRight, mIconBottom, mPaint);

@@ -1,15 +1,10 @@
 package com.yildizkabaran.twittersplash.view;
 
-import java.util.Random;
-
 import android.content.Context;
 import android.graphics.Color;
-import android.util.Log;
 import android.widget.FrameLayout;
 
-import com.yildizkabaran.twittersplash.BuildConfig;
 import com.yildizkabaran.twittersplash.R;
-import com.yildizkabaran.twittersplash.view.SplashView.ISplashListener;
 
 /**
  * A simple frame layout with 2 child views, one for content one for splash
@@ -18,15 +13,12 @@ import com.yildizkabaran.twittersplash.view.SplashView.ISplashListener;
  */
 public class MainView extends FrameLayout {
   
-  private static final String TAG = "MainView";
-  
   public MainView(Context context){
     super(context);
     initialize();
   }
   
   private SplashView mSplashView;
-  private ContentView mContentView;
   
   private void initialize(){
     Context context = getContext();
@@ -43,56 +35,13 @@ public class MainView extends FrameLayout {
     
     // add the view
     addView(mSplashView);
-    
-    // pretend like we are going to load something in the background
-    startLoadingData();
   }
   
-  private void startLoadingData(){
-    // finish "loading data" in a random time between 1 and 3 seconds
-    Random random = new Random();
-    postDelayed(new Runnable(){
-      @Override
-      public void run(){
-        onLoadingDataEnded();
-      }
-    }, 1000 + random.nextInt(2000));
+  public void unsetSplashView(){
+    mSplashView = null;
   }
   
-  private void onLoadingDataEnded(){
-    Context context = getContext();
-    // now that our data is loaded we can initialize the content view
-    mContentView = new ContentView(context);
-    // add the content view to the background
-    addView(mContentView, 0);
-    
-    // start the splash animation
-    mSplashView.splashAndDisappear(new ISplashListener(){
-      @Override
-      public void onStart(){
-        // log the animation start event
-        if(BuildConfig.DEBUG){
-          Log.d(TAG, "splash started");
-        }
-      }
-      
-      @Override
-      public void onUpdate(float completionFraction){
-        // log animation update events
-        if(BuildConfig.DEBUG){
-          Log.d(TAG, "splash at " + String.format("%.2f", (completionFraction * 100)) + "%");
-        }
-      }
-      
-      @Override
-      public void onEnd(){
-        // log the animation end event
-        if(BuildConfig.DEBUG){
-          Log.d(TAG, "splash ended");
-        }
-        // free the view so that it turns into garbage
-        mSplashView = null;
-      }
-    });
+  public SplashView getSplashView(){
+    return mSplashView;
   }
 }
