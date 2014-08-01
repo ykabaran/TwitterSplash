@@ -7,7 +7,7 @@ A simple replication of the Twitter's splash animation as seen in Twitter iOS ap
 
 ## Installation
 
-Simply copy the SplashView.java file into your project and use it like you would use any other custom view.
+Simply copy the SplashView.java file into your project and use it like you would use any other custom view. If you would like to inflate from XML, then you might also want to copy the resources in attrs.xml file as well.
 
 ## Usage
 
