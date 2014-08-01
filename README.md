@@ -36,7 +36,7 @@ mSplashView.splashAndDisappear(new ISplashListener(){
 	}
 
 	@Override
-	&nbsp;public void onEnd(){
+	public void onEnd(){
 
 	}
 });
