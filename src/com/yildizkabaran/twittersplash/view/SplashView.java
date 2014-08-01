@@ -12,7 +12,6 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -89,9 +88,8 @@ public class SplashView extends View {
   private int mIconWidth, mIconHeight;
   private float mMaxScale = 1;
   
-  // cache some object allocations so that they don't have to be allocated in onDraw
+  // cache the paint object so that it doesn't need to be allocated in onDraw
   private Paint mPaint = new Paint();
-  private RectF mIconRect = new RectF();
   
   /**
    * Initialized the view properties. No much is done in this method since most variables already have set defaults
@@ -298,30 +296,30 @@ public class SplashView extends View {
     float iconHeight = mIconHeight * mCurrentScale;
     
     // calculate all corners of the icon rectangle with the icon in the middle
-    mIconRect.left = (mWidth - iconWidth) / 2;
-    mIconRect.right = mIconRect.left + iconWidth;
-    mIconRect.top = (mHeight - iconHeight) / 2;
-    mIconRect.bottom = mIconRect.top + iconHeight;
+    float mIconLeft = (mWidth - iconWidth) / 2;
+    float mIconRight = mIconLeft + iconWidth;
+    float mIconTop = (mHeight - iconHeight) / 2;
+    float mIconBottom = mIconTop + iconHeight;
     
     // if the scale is less than 2, then don't enable the transparent hole yet
     if(mCurrentScale < 2){
       // draw a bgColored rectangle right underneath the icon, make the rectangle a little bigger using the threshold value
       mPaint.setColor(mBgColor);
-      canvas.drawRect(mIconRect.left, mIconRect.top, mIconRect.right, mIconRect.bottom, mPaint);
+      canvas.drawRect(mIconLeft, mIconTop, mIconRight, mIconBottom, mPaint);
     }
     
     // draw 4 rectangles around the icon to cover the entire screen, use threshold value to expand and overlap the rectangles
     mPaint.setColor(mIconColor);
-    canvas.drawRect(0, 0, mIconRect.left, mHeight, mPaint);
-    canvas.drawRect(mIconRect.left, 0, mIconRect.right, mIconRect.top, mPaint);
-    canvas.drawRect(mIconRect.left, mIconRect.bottom, mIconRect.right, mHeight, mPaint);
-    canvas.drawRect(mIconRect.right, 0, mWidth, mHeight, mPaint);
+    canvas.drawRect(0, 0, mIconLeft, mHeight, mPaint);
+    canvas.drawRect(mIconLeft, 0, mIconRight, mIconTop, mPaint);
+    canvas.drawRect(mIconLeft, mIconBottom, mIconRight, mHeight, mPaint);
+    canvas.drawRect(mIconRight, 0, mWidth, mHeight, mPaint);
     
     if(mIcon != null){
       // save the current canvas state
       canvas.save();
       // translate the canvas to draw the icon
-      canvas.translate(mIconRect.left, mIconRect.top);
+      canvas.translate(mIconLeft, mIconTop);
       // scale the canvas for the desired icon scale
       canvas.scale(mCurrentScale, mCurrentScale);
       // draw the icon on the canvas
