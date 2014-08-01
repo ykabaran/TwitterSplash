@@ -3,6 +3,8 @@ by Yildiz Kabaran
 
 A simple replication of the Twitter's splash animation as seen in Twitter iOS app. The animation can be used any app logo as long as a transparent icon with a solid background is provided.
 
+![Preview Image](http://i.imgbox.com/8wktpX5A.gif)
+
 ## Installation
 
 Simply copy the SplashView.java file into your project and use it like you would use any other custom view.

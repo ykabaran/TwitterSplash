@@ -225,13 +225,10 @@ public class SplashView extends View {
         // invalidate the view so that it gets redraw if it needs to be
         invalidate();
         
-        // notify the listener if set, but remember the animation runs in reverse
+        // notify the listener if set
+        // for some reason this animation can run beyond 100%
         if(listener != null){
-          if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR1){
-            listener.onUpdate(1 - animation.getAnimatedFraction());
-          } else {
-            listener.onUpdate((float) animation.getCurrentPlayTime() / mDuration);
-          }
+          listener.onUpdate((float) animation.getCurrentPlayTime() / mDuration);
         }
       }
     });
@@ -295,7 +292,7 @@ public class SplashView extends View {
   }
   
   @Override
-  protected void onDraw(Canvas canvas){
+  protected void onDraw(Canvas canvas){    
     // calculate the scaled width and height
     float iconWidth = mIconWidth * mCurrentScale;
     float iconHeight = mIconHeight * mCurrentScale;
