@@ -55,4 +55,4 @@ Special thanks to Isilay Olgun for preparing the images used in this demo. Other
 
 ## Copyright and License
 
-Feel free to use the code in any way you wish as long as you your own image files.
+Feel free to use the code in any way you wish as long as you use your own image files.
