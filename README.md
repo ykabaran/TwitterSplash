@@ -1,7 +1,7 @@
 # Twitter Splash for Android
 by Yildiz Kabaran
 
-A simple replication of the Twitter's splash animation as seen in Twitter iOS app. The animation can be used any app logo as long as a transparent icon with a solid background is provided.
+A simple replication of the Twitter's splash animation as seen in Twitter iOS app. The animation can be used with any app logo as long as a transparent icon with a solid background is provided.
 
 ![Preview Image](http://i.imgbox.com/8wktpX5A.gif)
 
