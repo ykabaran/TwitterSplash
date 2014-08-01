@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ValueAnimator;
 import android.animation.ValueAnimator.AnimatorUpdateListener;
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -11,6 +12,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
@@ -70,7 +72,7 @@ public class SplashView extends View {
 
   public static final int DEFAULT_BG_COLOR = Color.WHITE;
   public static final int DEFAULT_ICON_COLOR = Color.rgb(23, 169, 229);
-  public static final long DEFAULT_DURATION = 400;
+  public static final long DEFAULT_DURATION = 500;
   public static final boolean DEFAULT_REMOVE_FROM_PARENT_ON_END = true;
   
   private static final int PAINT_STROKE_WIDTH = 2; // give a stroke width to the paint so that the rectangles get a little overlap
@@ -212,6 +214,7 @@ public class SplashView extends View {
     
     // add an update listener so that we draw the view on each update
     animator.addUpdateListener(new AnimatorUpdateListener() {
+      @SuppressLint("NewApi")
       @Override
       public void onAnimationUpdate(ValueAnimator animation) {
         // keep in mind that the animation runs in reverse to get the desired effect from the interpolator
@@ -224,7 +227,11 @@ public class SplashView extends View {
         
         // notify the listener if set, but remember the animation runs in reverse
         if(listener != null){
-          listener.onUpdate(1 - animation.getAnimatedFraction());
+          if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.HONEYCOMB_MR1){
+            listener.onUpdate(1 - animation.getAnimatedFraction());
+          } else {
+            listener.onUpdate((float) animation.getCurrentPlayTime() / mDuration);
+          }
         }
       }
     });
