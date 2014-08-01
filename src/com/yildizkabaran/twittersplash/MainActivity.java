@@ -29,7 +29,9 @@ public class MainActivity extends Activity {
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
+    // change the DO_XML variable to switch between code and xml
     if(DO_XML){
+      // inflate the view from XML and then get a reference to it
       setContentView(R.layout.activity_main);
       mMainView = (ViewGroup) findViewById(R.id.main_view);
       mSplashView = (SplashView) findViewById(R.id.splash_view);
@@ -40,6 +42,7 @@ public class MainActivity extends Activity {
       setContentView(mMainView);
     }
     
+    // pretend like we are loading data
     startLoadingData();
   }
   
@@ -88,6 +91,8 @@ public class MainActivity extends Activity {
         // free the view so that it turns into garbage
         mSplashView = null;
         if(!DO_XML){
+          // if inflating from code we will also have to free the reference in MainView as well
+          // otherwise we will leak the View, this could be done better but so far it will suffice
           ((MainView) mMainView).unsetSplashView();
         }
       }

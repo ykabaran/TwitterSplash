@@ -96,6 +96,10 @@ public class SplashView extends View {
   // cache the paint object so that it doesn't need to be allocated in onDraw
   private Paint mPaint = new Paint();
   
+  /**
+   * Setup the custom attributes from XML
+   * @param attrs
+   */
   private void setupAttributes(AttributeSet attrs) {
     Context context = getContext();
 
