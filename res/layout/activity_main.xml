@@ -12,7 +12,7 @@
         app:icon="@drawable/ic_twitter"
         app:iconColor="@color/twitter_blue"
         app:duration="500"
-        app:backgroundColor="@color/white"
+        app:holeFillColor="@color/white"
         app:removeFromParentOnEnd="true" />
 
 </FrameLayout>

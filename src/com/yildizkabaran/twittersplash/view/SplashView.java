@@ -74,7 +74,7 @@ public class SplashView extends View {
     initialize();
   }
 
-  public static final int DEFAULT_BG_COLOR = Color.WHITE;
+  public static final int DEFAULT_HOLE_FILL_COLOR = Color.WHITE;
   public static final int DEFAULT_ICON_COLOR = Color.rgb(23, 169, 229);
   public static final int DEFAULT_DURATION = 500;
   public static final boolean DEFAULT_REMOVE_FROM_PARENT_ON_END = true;
@@ -82,7 +82,7 @@ public class SplashView extends View {
   private static final int PAINT_STROKE_WIDTH = 2; // give a stroke width to the paint so that the rectangles get a little overlap
   
   private Drawable mIcon; // most important item, cannot be null
-  private int mBgColor = DEFAULT_BG_COLOR; // color to be shown in the transparent hole before the animation starts
+  private int mHoleFillColor = DEFAULT_HOLE_FILL_COLOR; // color to be shown in the transparent hole before the animation starts
   private int mIconColor = DEFAULT_ICON_COLOR; // should be the same color of as the icon background
   private long mDuration = DEFAULT_DURATION; // total duration, in ms, of the animation
   private boolean mRemoveFromParentOnEnd = true; // a flag for removing the view from its parent once the animation is over
@@ -115,8 +115,8 @@ public class SplashView extends View {
       case R.styleable.TwitterSplashView_iconColor:
         setIconColor(a.getColor(i, DEFAULT_ICON_COLOR));
         break;
-      case R.styleable.TwitterSplashView_backgroundColor:
-        setBackgroundColor(a.getColor(i, DEFAULT_BG_COLOR));
+      case R.styleable.TwitterSplashView_holeFillColor:
+        setHoleFillColor(a.getColor(i, DEFAULT_HOLE_FILL_COLOR));
         break;
       case R.styleable.TwitterSplashView_duration:
         setDuration(a.getInt(i, DEFAULT_DURATION));
@@ -139,11 +139,10 @@ public class SplashView extends View {
   }
   
   /**
-   * Set the background color of the view that will be seen through the transparent hole of the icon before the animation starts
+   * Set the fill color of the view that will be seen through the transparent hole of the icon before the animation starts
    */
-  @Override
-  public void setBackgroundColor(int bgColor){
-    mBgColor = bgColor;
+  public void setHoleFillColor(int bgColor){
+    mHoleFillColor = bgColor;
   }
   
   /**
@@ -340,9 +339,9 @@ public class SplashView extends View {
     
     // if the scale is less than 2, then don't enable the transparent hole yet
     if(mCurrentScale < 2){
-      Log.d(TAG, "drawing bg with color " + mBgColor + " where white is " + Color.WHITE);
+      Log.d(TAG, "drawing bg with color " + mHoleFillColor + " where white is " + Color.WHITE);
       // draw a bgColored rectangle right underneath the icon, make the rectangle a little bigger using the threshold value
-      mPaint.setColor(mBgColor);
+      mPaint.setColor(mHoleFillColor);
       canvas.drawRect(mIconLeft, mIconTop, mIconRight, mIconBottom, mPaint);
     }
     

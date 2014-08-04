@@ -9,15 +9,6 @@ package com.yildizkabaran.twittersplash;
 
 public final class R {
     public static final class attr {
-        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
-"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-         */
-        public static final int backgroundColor=0x7f010002;
         /** <p>Must be an integer value, such as "<code>100</code>".
 <p>This may also be a reference to a resource (in the form
 "<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
@@ -26,6 +17,15 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static final int duration=0x7f010003;
+        /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int holeFillColor=0x7f010002;
         /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
          */
@@ -91,14 +91,14 @@ containing a value of this type.
            <colgroup align="left" />
            <colgroup align="left" />
            <tr><th>Attribute</th><th>Description</th></tr>
-           <tr><td><code>{@link #TwitterSplashView_backgroundColor com.yildizkabaran.twittersplash:backgroundColor}</code></td><td></td></tr>
            <tr><td><code>{@link #TwitterSplashView_duration com.yildizkabaran.twittersplash:duration}</code></td><td></td></tr>
+           <tr><td><code>{@link #TwitterSplashView_holeFillColor com.yildizkabaran.twittersplash:holeFillColor}</code></td><td></td></tr>
            <tr><td><code>{@link #TwitterSplashView_icon com.yildizkabaran.twittersplash:icon}</code></td><td></td></tr>
            <tr><td><code>{@link #TwitterSplashView_iconColor com.yildizkabaran.twittersplash:iconColor}</code></td><td></td></tr>
            <tr><td><code>{@link #TwitterSplashView_removeFromParentOnEnd com.yildizkabaran.twittersplash:removeFromParentOnEnd}</code></td><td></td></tr>
            </table>
-           @see #TwitterSplashView_backgroundColor
            @see #TwitterSplashView_duration
+           @see #TwitterSplashView_holeFillColor
            @see #TwitterSplashView_icon
            @see #TwitterSplashView_iconColor
            @see #TwitterSplashView_removeFromParentOnEnd
@@ -107,21 +107,6 @@ containing a value of this type.
             0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003,
             0x7f010004
         };
-        /**
-          <p>This symbol is the offset where the {@link com.yildizkabaran.twittersplash.R.attr#backgroundColor}
-          attribute's value can be found in the {@link #TwitterSplashView} array.
-
-
-          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
-"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
-<p>This may also be a reference to a resource (in the form
-"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
-theme attribute (in the form
-"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
-containing a value of this type.
-          @attr name com.yildizkabaran.twittersplash:backgroundColor
-        */
-        public static final int TwitterSplashView_backgroundColor = 2;
         /**
           <p>This symbol is the offset where the {@link com.yildizkabaran.twittersplash.R.attr#duration}
           attribute's value can be found in the {@link #TwitterSplashView} array.
@@ -136,6 +121,21 @@ containing a value of this type.
           @attr name com.yildizkabaran.twittersplash:duration
         */
         public static final int TwitterSplashView_duration = 3;
+        /**
+          <p>This symbol is the offset where the {@link com.yildizkabaran.twittersplash.R.attr#holeFillColor}
+          attribute's value can be found in the {@link #TwitterSplashView} array.
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name com.yildizkabaran.twittersplash:holeFillColor
+        */
+        public static final int TwitterSplashView_holeFillColor = 2;
         /**
           <p>This symbol is the offset where the {@link com.yildizkabaran.twittersplash.R.attr#icon}
           attribute's value can be found in the {@link #TwitterSplashView} array.
