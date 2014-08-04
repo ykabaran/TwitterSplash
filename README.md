@@ -16,7 +16,7 @@ You can create in code:
 // create and customize the view
 SplashView splashView = new SplashView(context);
 splashView.setDuration(500); // the animation will last 0.5 seconds
-splashView.setBackgroundColor(Color.WHITE); // transparent hole will look white before the animation
+splashView.setHoleFillColor(Color.WHITE); // transparent hole will look white before the animation
 splashView.setIconColor(Color.rgb(23, 169, 229)); // this is the Twitter blue color
 splashView.setIconResource(R.drawable.ic_twitter); // a Twitter icon with transparent hole in it
 splashView.setRemoveFromParentOnEnd(true); // remove the SplashView from MainView once animation is completed
@@ -35,7 +35,7 @@ or in XML:
     app:icon="@drawable/ic_twitter"
     app:iconColor="@color/twitter_blue"
     app:duration="500"
-    app:backgroundColor="@color/white"
+    app:holeFillColor="@color/white"
     app:removeFromParentOnEnd="true" />
 ```
 
