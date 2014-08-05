@@ -133,6 +133,9 @@ public class SplashView extends View {
    * Initialized the view properties. No much is done in this method since most variables already have set defaults
    */
   private void initialize(){
+    // make the background transparent so that the view does not automatically draw any unwanted colors
+    setBackgroundColor(Color.TRANSPARENT);
+    
     // set fill style on the paint so that the rectangles get filled
     mPaint.setStyle(Paint.Style.FILL_AND_STROKE);
     mPaint.setStrokeWidth(PAINT_STROKE_WIDTH);
