@@ -1,13 +1,13 @@
 # Twitter Splash for Android
 by Yildiz Kabaran
 
-A simple replication of the Twitter's splash animation as seen in Twitter iOS app. The animation can be used with any app logo as long as a transparent icon with a solid background is provided.
+A simple replication of Twitter's splash animation as seen in Twitter iOS app. The animation can be used with any app logo as long as a transparent icon with a solid background is provided.
 
-![Preview Image](http://i.imgbox.com/8wktpX5A.gif)
+![Preview Image](http://i.imgbox.com/dMkufUcJ.gif)
 
 ## Installation
 
-Simply copy the SplashView.java file into your project and use it like you would use any other custom view. If you would like to inflate from XML, then you might also want to copy the resources in attrs.xml file as well.
+Simply copy the SplashView.java and attrs.xml files into your project and use it like you would use any other custom view.
 
 ## Usage
 
@@ -15,14 +15,16 @@ You can create in code:
 ```
 // create and customize the view
 SplashView splashView = new SplashView(context);
-splashView.setDuration(500); // the animation will last 0.5 seconds
-splashView.setHoleFillColor(Color.WHITE); // transparent hole will look white before the animation
-splashView.setIconColor(Color.rgb(23, 169, 229)); // this is the Twitter blue color
-splashView.setIconResource(R.drawable.ic_twitter); // a Twitter icon with transparent hole in it
-splashView.setRemoveFromParentOnEnd(true); // remove the SplashView from MainView once animation is completed
-
-// add the view to a parent view
-parentView.addView(splashView);
+// the animation will last 0.5 seconds
+splashView.setDuration(500);
+// transparent hole will look white before the animation
+splashView.setHoleFillColor(Color.WHITE);
+// this is the Twitter blue color
+splashView.setIconColor(Color.rgb(23, 169, 229));
+// a Twitter icon with transparent hole in it
+splashView.setIconResource(R.drawable.ic_twitter);
+// remove the SplashView from MainView once animation is completed
+splashView.setRemoveFromParentOnEnd(true);
 ```
 
 or in XML:
@@ -42,7 +44,7 @@ or in XML:
 then to run the animation, simply call:
 ```
 // run the animation and listen to the animation events (listener can be left as null)
-mSplashView.splashAndDisappear(new ISplashListener(){
+splashView.splashAndDisappear(new ISplashListener(){
 	@Override
 	public void onStart(){
 
@@ -60,6 +62,10 @@ mSplashView.splashAndDisappear(new ISplashListener(){
 });
 ```
 
+In the sample code a boolean DO_XML variable is provided to demonstrate both methods.
+
+Please feel free to ask for any fixes/customizations/additions to this view.
+
 ## Notes
 
 - The view has only been tested on HTC One running Android 4.4.2, and therefore needs to be tested on devices with different versions and screen resolutions.
@@ -68,7 +74,7 @@ mSplashView.splashAndDisappear(new ISplashListener(){
 
 ## Thanks
 
-Special thanks to Isilay Olgun for preparing the images used in this demo. Otherwise this would be a very ugly demonstration.
+Special thanks to Isilay Olgun for preparing the images used in this demo. Otherwise this would be a very ugly looking demonstration.
 
 ## Copyright and License
 

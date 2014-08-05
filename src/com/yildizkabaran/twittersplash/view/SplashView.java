@@ -44,7 +44,7 @@ public class SplashView extends View {
   }
   
   /**
-   * A Context constructor is provided for creating the view by code. All other constructors use this constructor.
+   * Context constructor
    * @param context
    */
   public SplashView(Context context){
@@ -53,25 +53,25 @@ public class SplashView extends View {
   }
 
   /**
-   * This constructor is redirected to the Context constructor.
+   * Context and attributes constructor
    * @param context
    * @param attrs
    */
   public SplashView(Context context, AttributeSet attrs) {
     super(context, attrs);
-    setupAttributes(attrs);
     initialize();
+    setupAttributes(attrs);
   }
 
   /**
-   * This constructor is redirected to the Context constructor.
+   * Context, attributes, and style constructor
    * @param context
    * @param attrs
    */
   public SplashView(Context context, AttributeSet attrs, int defStyleAttr) {
     super(context, attrs, defStyleAttr);
-    setupAttributes(attrs);
     initialize();
+    setupAttributes(attrs);
   }
 
   public static final int DEFAULT_HOLE_FILL_COLOR = Color.WHITE;
@@ -97,7 +97,7 @@ public class SplashView extends View {
   private Paint mPaint = new Paint();
   
   /**
-   * Setup the custom attributes from XML
+   * Setup custom attributes from XML
    * @param attrs
    */
   private void setupAttributes(AttributeSet attrs) {
@@ -168,7 +168,7 @@ public class SplashView extends View {
   }
   
   /**
-   * Set the resource id of the Drawable to be used as the icon. See setIconDrawable(Drawable icon) for more details.
+   * Set the resource id of the Drawable to be used as the icon. See setIconDrawable(Drawable) for more details.
    * @param resId
    */
   public void setIconResource(int resId){
@@ -339,7 +339,6 @@ public class SplashView extends View {
     
     // if the scale is less than 2, then don't enable the transparent hole yet
     if(mCurrentScale < 2){
-      Log.d(TAG, "drawing bg with color " + mHoleFillColor + " where white is " + Color.WHITE);
       // draw a bgColored rectangle right underneath the icon, make the rectangle a little bigger using the threshold value
       mPaint.setColor(mHoleFillColor);
       canvas.drawRect(mIconLeft, mIconTop, mIconRight, mIconBottom, mPaint);
